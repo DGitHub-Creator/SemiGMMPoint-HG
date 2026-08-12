@@ -24,3 +24,7 @@ wandb/
 /reports/HG_DATA_AUDIT.md
 /reports/HG_VS_OLD_DATA_COMPARISON.md
 /reports/hg_vs_old_data.json
+
+# Local machine info / test artifacts (never publish)
+/AGENTS.md
+*.out
