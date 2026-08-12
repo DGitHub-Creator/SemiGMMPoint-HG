@@ -1,0 +1,20 @@
+SemiGMMPoint HG 20% (Area_3, 2757311 valid points)
+  dataset_name: ODPT-HG
+  dataset_root: /path/to/odpt-hg-dataset
+  split_fingerprint: REDACTED
+  checkpoint: experiments/odpt_hg/20pct/checkpoints/smoke/final.pth
+  epoch: 2, seed: 1
+  OA: 56.49%  mAcc: 16.71%  mIoU: 9.46%
+  IoU_pipeline: 0.25%  Acc_pipeline: 0.25%
+  IoU_steel_frame: 0.00%  Acc_steel_frame: 0.00%
+  IoU_elbow_pipe: 0.01%  Acc_elbow_pipe: 0.01%
+  IoU_valve_guardrail: 0.00%  Acc_valve_guardrail: 0.00%
+  IoU_gate_valve: 0.00%  Acc_gate_valve: 0.00%
+  IoU_Christmas_tree_body: 56.49%  Acc_Christmas_tree_body: 100.00%
+confusion matrix (rows=GT, cols=Pred):
+  GT0        1199        585         95        117        198     473128
+  GT1          87         11         14         16         36     271058
+  GT2           0         28         30          1          6     251662
+  GT3           6          3          0          0          1      96722
+  GT4           0          0          0          0          0     106067
+  GT5           0          0          0          0          0    1556241

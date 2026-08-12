@@ -1,0 +1,2 @@
+method,budget_alias,labeled_scenes,labeled_point_ratio,test_area,checkpoint,epoch,seed,OA,mAcc,mIoU
+SemiGMMPoint,10%,2,0.1431,Area_3,experiments/odpt/10pct/checkpoints/official/final.pth,100,1,0.2543,0.4291,0.1699

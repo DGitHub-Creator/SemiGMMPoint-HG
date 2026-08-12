@@ -1,0 +1,7 @@
+row=GT,col=Pred,pipeline,steel_frame,elbow_pipe,valve_guardrail,gate_valve,Christmas_tree_body
+pipeline,0,121,0,0,0,475201,0
+steel_frame,1,0,0,0,0,271222,0
+elbow_pipe,2,56,0,0,0,251671,0
+valve_guardrail,3,0,0,0,0,96732,0
+gate_valve,4,0,0,0,0,106067,0
+Christmas_tree_body,5,0,0,0,0,1556241,0

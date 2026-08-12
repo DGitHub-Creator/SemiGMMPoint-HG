@@ -1,0 +1,90 @@
+{
+  "method": "SemiGMMPoint",
+  "dataset_name": "ODPT-HG",
+  "dataset_root": "/path/to/odpt-hg-dataset",
+  "data_root": "/path/to/odpt-hg-data",
+  "dataset_version": "1.0",
+  "split_fingerprint": "REDACTED",
+  "budget_alias": "20%",
+  "labeled_scenes": 3,
+  "test_area": "Area_3",
+  "test_scenes": [
+    "Area_3_conferenceRoom_20",
+    "Area_3_conferenceRoom_21",
+    "Area_3_conferenceRoom_22"
+  ],
+  "checkpoint": "experiments/odpt_hg/20pct/checkpoints/official-rankgate-0ab9c71/final.pth",
+  "epoch": 100,
+  "seed": 1,
+  "OA": 0.7569,
+  "mAcc": 0.6773,
+  "mIoU": 0.4644,
+  "per_class_accuracy": {
+    "pipeline": 0.4673,
+    "steel_frame": 0.2447,
+    "elbow_pipe": 0.8357,
+    "valve_guardrail": 0.6265,
+    "gate_valve": 0.9744,
+    "Christmas_tree_body": 0.9152
+  },
+  "per_class_IoU": {
+    "pipeline": 0.3981,
+    "steel_frame": 0.1822,
+    "elbow_pipe": 0.6434,
+    "valve_guardrail": 0.16,
+    "gate_valve": 0.5111,
+    "Christmas_tree_body": 0.8917
+  },
+  "confusion_matrix": [
+    [
+      222125,
+      33984,
+      38238,
+      175423,
+      5552,
+      0
+    ],
+    [
+      59025,
+      66362,
+      22784,
+      74329,
+      10221,
+      38501
+    ],
+    [
+      7769,
+      14244,
+      210356,
+      18844,
+      514,
+      0
+    ],
+    [
+      15433,
+      6465,
+      14205,
+      60599,
+      30,
+      0
+    ],
+    [
+      57,
+      0,
+      0,
+      121,
+      103349,
+      2540
+    ],
+    [
+      375,
+      38362,
+      0,
+      13371,
+      79806,
+      1424327
+    ]
+  ],
+  "smoke": false,
+  "timestamp": "2026-08-11 19:26:35"
+}

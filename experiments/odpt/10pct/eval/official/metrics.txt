@@ -1,0 +1,18 @@
+SemiGMMPoint 10% (Area_3, 2757311 valid points)
+  checkpoint: experiments/odpt/10pct/checkpoints/official/final.pth
+  epoch: 100, seed: 1
+  OA: 25.43%  mAcc: 42.91%  mIoU: 16.99%
+  IoU_pipeline: 40.12%  Acc_pipeline: 49.43%
+  IoU_steel_frame: 0.00%  Acc_steel_frame: 0.00%
+  IoU_elbow_pipe: 36.70%  Acc_elbow_pipe: 86.72%
+  IoU_valve_guardrail: 10.82%  Acc_valve_guardrail: 23.77%
+  IoU_gate_valve: 5.95%  Acc_gate_valve: 89.20%
+  IoU_Christmas_tree_body: 8.36%  Acc_Christmas_tree_body: 8.37%
+confusion matrix (rows=GT, cols=Pred):
+                0          1          2          3          4          5
+  GT0      234940          0     171720      65675       2987          0
+  GT1       68762          0      96573      25725      80162          0
+  GT2       10512          0     218288      22327        600          0
+  GT3       30301          0      43439      22992          0          0
+  GT4         477          0       7880        984      94615       2111
+  GT5         216          0      23508       1122    1401128     130267

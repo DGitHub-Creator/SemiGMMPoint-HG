@@ -1,0 +1,86 @@
+{
+  "method": "SemiGMMPoint",
+  "budget_alias": "10%",
+  "labeled_scenes": 2,
+  "labeled_point_ratio": 0.1431,
+  "test_area": "Area_3",
+  "test_scenes": [
+    "Area_3_conferenceRoom_20",
+    "Area_3_conferenceRoom_21",
+    "Area_3_conferenceRoom_22"
+  ],
+  "checkpoint": "experiments/odpt/10pct/checkpoints/smoke/final.pth",
+  "epoch": 2,
+  "seed": 1,
+  "OA": 0.0385,
+  "mAcc": 0.1667,
+  "mIoU": 0.0065,
+  "per_class_accuracy": {
+    "pipeline": 0.0003,
+    "steel_frame": 0.0,
+    "elbow_pipe": 0.0,
+    "valve_guardrail": 0.0,
+    "gate_valve": 1.0,
+    "Christmas_tree_body": 0.0
+  },
+  "per_class_IoU": {
+    "pipeline": 0.0003,
+    "steel_frame": 0.0,
+    "elbow_pipe": 0.0,
+    "valve_guardrail": 0.0,
+    "gate_valve": 0.0385,
+    "Christmas_tree_body": 0.0
+  },
+  "confusion_matrix": [
+    [
+      121,
+      0,
+      0,
+      0,
+      475201,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      271222,
+      0
+    ],
+    [
+      56,
+      0,
+      0,
+      0,
+      251671,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      96732,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      106067,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1556241,
+      0
+    ]
+  ],
+  "smoke": true,
+  "timestamp": "2026-08-10 07:10:26"
+}

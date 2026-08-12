@@ -1,0 +1,2 @@
+method,dataset_name,budget_alias,checkpoint,epoch,seed,OA,mAcc,mIoU
+SemiGMMPoint,ODPT-HG,10%,experiments/odpt_hg/10pct/checkpoints/official-rankgate-0ab9c71/final.pth,100,1,0.7684,0.6242,0.4558

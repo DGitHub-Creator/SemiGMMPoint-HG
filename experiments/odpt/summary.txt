@@ -1,0 +1,5 @@
+SemiGMMPoint summary (Area_3, official runs only)
+SemiGMMPoint 10% mIoU = 16.99%
+SemiGMMPoint 10% mAcc = 42.91%
+SemiGMMPoint 20% mIoU = NOT_AVAILABLE
+SemiGMMPoint 20% mAcc = NOT_AVAILABLE

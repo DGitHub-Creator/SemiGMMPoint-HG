@@ -1,0 +1,578 @@
+{
+  "dataset": "ODPT-HG labeled Area 1 only",
+  "budget": 10,
+  "scenes": [
+    "Area_1_conferenceRoom_1",
+    "Area_1_conferenceRoom_5"
+  ],
+  "checkpoint": "experiments/odpt_hg/pretrain/checkpoints/final.pth",
+  "checkpoint_epoch": 100,
+  "test_mode": "nearest_neighbor",
+  "points": 4605441,
+  "accuracy": 0.126132,
+  "mean_confidence": 0.503914,
+  "max_confidence": 0.764292,
+  "ece_20bin": 0.377781,
+  "correct_confidence_percentiles": {
+    "1": 0.166667,
+    "5": 0.166667,
+    "25": 0.394919,
+    "50": 0.449055,
+    "75": 0.529308,
+    "95": 0.689787,
+    "99": 0.734547
+  },
+  "incorrect_confidence_percentiles": {
+    "1": 0.166667,
+    "5": 0.166667,
+    "25": 0.39441,
+    "50": 0.50616,
+    "75": 0.688465,
+    "95": 0.730794,
+    "99": 0.741902
+  },
+  "per_scene": {
+    "Area_1_conferenceRoom_1": {
+      "points": 2205217,
+      "accuracy": 0.137622,
+      "mean_confidence": 0.491417,
+      "max_confidence": 0.758451
+    },
+    "Area_1_conferenceRoom_5": {
+      "points": 2400224,
+      "accuracy": 0.115576,
+      "mean_confidence": 0.515394,
+      "max_confidence": 0.764292
+    }
+  },
+  "bins": [
+    {
+      "lo": 0.0,
+      "hi": 0.05,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.05,
+      "hi": 0.1,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.1,
+      "hi": 0.15,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.15,
+      "hi": 0.2,
+      "count": 551818,
+      "accuracy": 0.135603,
+      "mean_confidence": 0.166667
+    },
+    {
+      "lo": 0.2,
+      "hi": 0.25,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.25,
+      "hi": 0.3,
+      "count": 2139,
+      "accuracy": 0.017765,
+      "mean_confidence": 0.289354
+    },
+    {
+      "lo": 0.3,
+      "hi": 0.35,
+      "count": 136400,
+      "accuracy": 0.104641,
+      "mean_confidence": 0.339195
+    },
+    {
+      "lo": 0.35,
+      "hi": 0.4,
+      "count": 541047,
+      "accuracy": 0.125335,
+      "mean_confidence": 0.380755
+    },
+    {
+      "lo": 0.4,
+      "hi": 0.45,
+      "count": 784675,
+      "accuracy": 0.173641,
+      "mean_confidence": 0.422262
+    },
+    {
+      "lo": 0.45,
+      "hi": 0.5,
+      "count": 363627,
+      "accuracy": 0.278453,
+      "mean_confidence": 0.473249
+    },
+    {
+      "lo": 0.5,
+      "hi": 0.55,
+      "count": 251941,
+      "accuracy": 0.264554,
+      "mean_confidence": 0.523692
+    },
+    {
+      "lo": 0.55,
+      "hi": 0.6,
+      "count": 220072,
+      "accuracy": 0.188593,
+      "mean_confidence": 0.577462
+    },
+    {
+      "lo": 0.6,
+      "hi": 0.65,
+      "count": 226047,
+      "accuracy": 0.143974,
+      "mean_confidence": 0.627185
+    },
+    {
+      "lo": 0.65,
+      "hi": 0.7,
+      "count": 697974,
+      "accuracy": 0.030265,
+      "mean_confidence": 0.678677
+    },
+    {
+      "lo": 0.7,
+      "hi": 0.75,
+      "count": 823727,
+      "accuracy": 0.029176,
+      "mean_confidence": 0.720465
+    },
+    {
+      "lo": 0.75,
+      "hi": 0.8,
+      "count": 5974,
+      "accuracy": 0.097087,
+      "mean_confidence": 0.752749
+    },
+    {
+      "lo": 0.8,
+      "hi": 0.85,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.85,
+      "hi": 0.9,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.9,
+      "hi": 0.95,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    },
+    {
+      "lo": 0.95,
+      "hi": 1.0,
+      "count": 0,
+      "accuracy": null,
+      "mean_confidence": null
+    }
+  ],
+  "thresholds": [
+    {
+      "threshold": 0.2,
+      "accepted": 4053623,
+      "coverage": 0.880181,
+      "accuracy": 0.124843,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 84574,
+          "accuracy": 0.024168
+        },
+        "steel_frame": {
+          "accepted": 560655,
+          "accuracy": 0.035626
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 2636298,
+          "accuracy": 0.028996
+        },
+        "gate_valve": {
+          "accepted": 204136,
+          "accuracy": 0.074431
+        },
+        "Christmas_tree_body": {
+          "accepted": 567960,
+          "accuracy": 0.690913
+        }
+      }
+    },
+    {
+      "threshold": 0.25,
+      "accepted": 4053623,
+      "coverage": 0.880181,
+      "accuracy": 0.124843,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 84574,
+          "accuracy": 0.024168
+        },
+        "steel_frame": {
+          "accepted": 560655,
+          "accuracy": 0.035626
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 2636298,
+          "accuracy": 0.028996
+        },
+        "gate_valve": {
+          "accepted": 204136,
+          "accuracy": 0.074431
+        },
+        "Christmas_tree_body": {
+          "accepted": 567960,
+          "accuracy": 0.690913
+        }
+      }
+    },
+    {
+      "threshold": 0.3,
+      "accepted": 4051484,
+      "coverage": 0.879717,
+      "accuracy": 0.124899,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 83586,
+          "accuracy": 0.024454
+        },
+        "steel_frame": {
+          "accepted": 560409,
+          "accuracy": 0.035642
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 2636298,
+          "accuracy": 0.028996
+        },
+        "gate_valve": {
+          "accepted": 203231,
+          "accuracy": 0.074575
+        },
+        "Christmas_tree_body": {
+          "accepted": 567960,
+          "accuracy": 0.690913
+        }
+      }
+    },
+    {
+      "threshold": 0.35,
+      "accepted": 3915084,
+      "coverage": 0.8501,
+      "accuracy": 0.125605,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 79911,
+          "accuracy": 0.025578
+        },
+        "steel_frame": {
+          "accepted": 453231,
+          "accuracy": 0.016093
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 2619539,
+          "accuracy": 0.029135
+        },
+        "gate_valve": {
+          "accepted": 196063,
+          "accuracy": 0.074797
+        },
+        "Christmas_tree_body": {
+          "accepted": 566340,
+          "accuracy": 0.691163
+        }
+      }
+    },
+    {
+      "threshold": 0.4,
+      "accepted": 3374037,
+      "coverage": 0.73262,
+      "accuracy": 0.125649,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 53578,
+          "accuracy": 0.0
+        },
+        "steel_frame": {
+          "accepted": 422475,
+          "accuracy": 0.014595
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 2295349,
+          "accuracy": 0.032662
+        },
+        "gate_valve": {
+          "accepted": 117352,
+          "accuracy": 0.041618
+        },
+        "Christmas_tree_body": {
+          "accepted": 485283,
+          "accuracy": 0.696342
+        }
+      }
+    },
+    {
+      "threshold": 0.45,
+      "accepted": 2589362,
+      "coverage": 0.56224,
+      "accuracy": 0.111105,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 44585,
+          "accuracy": 0.0
+        },
+        "steel_frame": {
+          "accepted": 392420,
+          "accuracy": 0.01068
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 1842480,
+          "accuracy": 0.040304
+        },
+        "gate_valve": {
+          "accepted": 12527,
+          "accuracy": 0.020276
+        },
+        "Christmas_tree_body": {
+          "accepted": 297350,
+          "accuracy": 0.702828
+        }
+      }
+    },
+    {
+      "threshold": 0.5,
+      "accepted": 2225735,
+      "coverage": 0.483284,
+      "accuracy": 0.083765,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 42779,
+          "accuracy": 0.0
+        },
+        "steel_frame": {
+          "accepted": 364398,
+          "accuracy": 0.007635
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 1658800,
+          "accuracy": 0.040967
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 159758,
+          "accuracy": 0.72422
+        }
+      }
+    },
+    {
+      "threshold": 0.55,
+      "accepted": 1973794,
+      "coverage": 0.428579,
+      "accuracy": 0.060688,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 41788,
+          "accuracy": 0.0
+        },
+        "steel_frame": {
+          "accepted": 332811,
+          "accuracy": 0.002512
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 1528446,
+          "accuracy": 0.039971
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 70749,
+          "accuracy": 0.817764
+        }
+      }
+    },
+    {
+      "threshold": 0.6,
+      "accepted": 1753722,
+      "coverage": 0.380794,
+      "accuracy": 0.044638,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 148,
+          "accuracy": 0.0
+        },
+        "steel_frame": {
+          "accepted": 320294,
+          "accuracy": 0.000412
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 1397872,
+          "accuracy": 0.033892
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 35408,
+          "accuracy": 0.869126
+        }
+      }
+    },
+    {
+      "threshold": 0.65,
+      "accepted": 1527675,
+      "coverage": 0.331711,
+      "accuracy": 0.029939,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "steel_frame": {
+          "accepted": 295605,
+          "accuracy": 0.0
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 1214248,
+          "accuracy": 0.024702
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 17822,
+          "accuracy": 0.883346
+        }
+      }
+    },
+    {
+      "threshold": 0.7,
+      "accepted": 829701,
+      "coverage": 0.180157,
+      "accuracy": 0.029665,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "steel_frame": {
+          "accepted": 20175,
+          "accuracy": 0.0
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 801162,
+          "accuracy": 0.021586
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 8364,
+          "accuracy": 0.87506
+        }
+      }
+    },
+    {
+      "threshold": 0.75,
+      "accepted": 5974,
+      "coverage": 0.001297,
+      "accuracy": 0.097087,
+      "per_predicted_class": {
+        "pipeline": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "steel_frame": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "elbow_pipe": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "valve_guardrail": {
+          "accepted": 5530,
+          "accuracy": 0.024593
+        },
+        "gate_valve": {
+          "accepted": 0,
+          "accuracy": null
+        },
+        "Christmas_tree_body": {
+          "accepted": 444,
+          "accuracy": 1.0
+        }
+      }
+    }
+  ],
+  "timestamp": "2026-08-11 16:43:33",
+  "protocol_note": "No Area 3 data was read or evaluated."
+}

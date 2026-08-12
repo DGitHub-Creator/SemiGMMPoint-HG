@@ -1,0 +1,8 @@
+SemiGMMPoint ODPT-HG summary (Area_3, official runs only)
+run_id: official-rankgate-0ab9c71
+dataset_name: ODPT-HG
+dataset_root: /path/to/odpt-hg-dataset
+SemiGMMPoint HG 10% mIoU = 45.58%
+SemiGMMPoint HG 10% mAcc = 62.42%
+SemiGMMPoint HG 20% mIoU = 46.44%
+SemiGMMPoint HG 20% mAcc = 67.73%

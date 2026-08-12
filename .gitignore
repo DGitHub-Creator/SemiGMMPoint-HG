@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+*.so
+*.pth
+*.log
+*.log.rank*
+runs/
+experiments/*/logs/
+experiments/*/runs/
+experiments/**/logs/
+experiments/**/runs/
+/experiments/odpt/odpt/
+/experiments/odpt_hg/odpt_hg/
+scripts/odpt/experiments/
+wandb/
+*.tfevents*
+
+# Private dataset artifacts (never commit; keep code/data separated)
+/experiments/odpt_hg/dataset_fingerprint.json
+/experiments/odpt_hg/class_weights/
+/reports/HG_DATA_AUDIT.md
+/reports/HG_VS_OLD_DATA_COMPARISON.md
+/reports/hg_vs_old_data.json

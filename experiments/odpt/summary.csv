@@ -1,0 +1,3 @@
+method,budget_alias,labeled_scenes,labeled_point_ratio,seed,checkpoint,mIoU,mAcc,OA
+SemiGMMPoint,10%,2,0.1431,1,experiments/odpt/10pct/checkpoints/official/final.pth,0.1699,0.4291,0.2543
+SemiGMMPoint,20%,3,0.2117,NOT_AVAILABLE,NOT_AVAILABLE,NOT_AVAILABLE,NOT_AVAILABLE,NOT_AVAILABLE

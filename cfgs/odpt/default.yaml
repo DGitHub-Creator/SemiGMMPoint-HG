@@ -1,0 +1,90 @@
+dataset:
+  common:
+    NAME: ODPTS3DIS
+    data_root: /path/to/odpt-data
+    split_file: splits/10.txt
+    val_scenes: [Area_1_conferenceRoom_3, Area_1_conferenceRoom_7]
+    test_scenes: [Area_3_conferenceRoom_20, Area_3_conferenceRoom_21, Area_3_conferenceRoom_22]
+    voxel_size: 0.04
+  train:
+    split: train
+    mode: labeled
+    voxel_max: 48000
+    loop: 30
+    presample: False
+  val:
+    split: val
+    mode: val
+    voxel_max: null
+    presample: False
+  test:
+    split: test
+    mode: test
+    voxel_max: null
+    presample: False
+feature_keys: x,heights
+num_classes: 6
+batch_size: 8
+val_batch_size: 1
+dataloader:
+  num_workers: 4
+datatransforms:
+  train: [ChromaticAutoContrast, PointsToTensor, PointCloudScaling, PointCloudXYZAlign, PointCloudRotation, PointCloudJitter, ChromaticDropGPU, ChromaticNormalize]
+  val: [PointsToTensor, PointCloudXYZAlign, ChromaticNormalize]
+  vote: [ChromaticDropGPU]
+  kwargs:
+    color_drop: 0.2
+    gravity_dim: 2
+    scale: [0.9, 1.1]
+    angle: [0, 0, 1]
+    jitter_sigma: 0.005
+    jitter_clip: 0.02
+# ---------------------------------------------------------------------------- #
+# Training cfgs
+# ---------------------------------------------------------------------------- #
+val_fn: validate
+ignore_index: 255
+epochs: 100
+start_epoch: 1
+cls_weighed_loss: True
+criterion_args:
+  NAME: SmoothCrossEntropy
+  label_smoothing: 0.2
+  num_classes: 6
+  ignore_index: 255
+optimizer:
+  NAME: 'adamw'  # performs 1 point better than adam
+  weight_decay: 1.0e-4
+sched: cosine
+warmup_epochs: 0
+min_lr: 1.0e-5 #
+lr: 0.01 # LR linear rule.
+grad_norm_clip: 10
+use_voting: False
+step_per_update: 1
+print_freq: 50
+sched_on_epoch: True
+use_amp: False
+# ---------------------------------------------------------------------------- #
+# io and misc
+# ---------------------------------------------------------------------------- #
+mode: train
+seed: 1
+deterministic: False
+local_rank: 0
+launcher: mp
+dist_backend: nccl
+dist_url: tcp://localhost:23456
+root_dir: experiments/odpt
+log_dir: 'odpt'
+save_freq: 5 # save a milestone checkpoint every 5 epochs (epoch_XXX) for resume/debug.
+val_freq: 1
+# NaN/Inf diagnostics; official ODPT entries enable it via CLI (--num_debug_gmm True).
+num_debug_gmm: False
+# ODPT protocol: when True, validation on the unlabeled pool and best-checkpoint
+# selection are disabled (the pool scenes carry no ground truth by protocol).
+# Official entries force this via CLI (--disable_validation True).
+disable_validation: False
+wandb:
+  use_wandb: False
+  project: SemiGMMPoint-ODPT

@@ -1,0 +1,2 @@
+method,budget_alias,labeled_scenes,labeled_point_ratio,test_area,checkpoint,epoch,seed,OA,mAcc,mIoU
+SemiGMMPoint,10%,2,0.1431,Area_3,experiments/odpt/10pct/checkpoints/smoke/final.pth,2,1,0.0385,0.1667,0.0065

@@ -1,0 +1,11 @@
+DDP edge test: world_size=2
+
+dzx:2306480:2306480 [0] misc/ibvwrap.cc:63 NCCL WARN Failed to open libibverbs.so[.1]
+NCCL version 2.7.8+cuda11.1
+
+dzx:2306481:2306481 [1] misc/ibvwrap.cc:63 NCCL WARN Failed to open libibverbs.so[.1]
+[rank0 phaseA] loss=0.5914 grads_finite=True params_finite=True guide_points=40 guide_skipped=0 nce_skipped=0[rank1 phaseA] loss=1.3693 grads_finite=True params_finite=True guide_points=80 guide_skipped=0 nce_skipped=0
+
+[rank0 phaseB] loss=0.3230 grads_finite=True params_finite=True guide_points=0 guide_skipped=4 nce_skipped=0
+[rank1 phaseB] loss=1.3938 grads_finite=True params_finite=True guide_points=80 guide_skipped=0 nce_skipped=0
+DDP edge test PASSED

@@ -1,0 +1,90 @@
+{
+  "method": "SemiGMMPoint",
+  "dataset_name": "ODPT-HG",
+  "dataset_root": "/path/to/odpt-hg-dataset",
+  "data_root": "/path/to/odpt-hg-data",
+  "dataset_version": "1.0",
+  "split_fingerprint": "REDACTED",
+  "budget_alias": "20%",
+  "labeled_scenes": 3,
+  "test_area": "Area_3",
+  "test_scenes": [
+    "Area_3_conferenceRoom_20",
+    "Area_3_conferenceRoom_21",
+    "Area_3_conferenceRoom_22"
+  ],
+  "checkpoint": "experiments/odpt_hg/20pct/checkpoints/smoke/final.pth",
+  "epoch": 2,
+  "seed": 1,
+  "OA": 0.5649,
+  "mAcc": 0.1671,
+  "mIoU": 0.0946,
+  "per_class_accuracy": {
+    "pipeline": 0.0025,
+    "steel_frame": 0.0,
+    "elbow_pipe": 0.0001,
+    "valve_guardrail": 0.0,
+    "gate_valve": 0.0,
+    "Christmas_tree_body": 1.0
+  },
+  "per_class_IoU": {
+    "pipeline": 0.0025,
+    "steel_frame": 0.0,
+    "elbow_pipe": 0.0001,
+    "valve_guardrail": 0.0,
+    "gate_valve": 0.0,
+    "Christmas_tree_body": 0.5649
+  },
+  "confusion_matrix": [
+    [
+      1199,
+      585,
+      95,
+      117,
+      198,
+      473128
+    ],
+    [
+      87,
+      11,
+      14,
+      16,
+      36,
+      271058
+    ],
+    [
+      0,
+      28,
+      30,
+      1,
+      6,
+      251662
+    ],
+    [
+      6,
+      3,
+      0,
+      0,
+      1,
+      96722
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      106067
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1556241
+    ]
+  ],
+  "smoke": true,
+  "timestamp": "2026-08-11 02:56:29"
+}

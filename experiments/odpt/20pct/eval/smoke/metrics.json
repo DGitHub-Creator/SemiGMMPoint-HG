@@ -1,0 +1,86 @@
+{
+  "method": "SemiGMMPoint",
+  "budget_alias": "20%",
+  "labeled_scenes": 3,
+  "labeled_point_ratio": 0.2117,
+  "test_area": "Area_3",
+  "test_scenes": [
+    "Area_3_conferenceRoom_20",
+    "Area_3_conferenceRoom_21",
+    "Area_3_conferenceRoom_22"
+  ],
+  "checkpoint": "experiments/odpt/20pct/checkpoints/smoke/final.pth",
+  "epoch": 2,
+  "seed": 1,
+  "OA": 0.2569,
+  "mAcc": 0.3053,
+  "mIoU": 0.127,
+  "per_class_accuracy": {
+    "pipeline": 0.9767,
+    "steel_frame": 0.0776,
+    "elbow_pipe": 0.2814,
+    "valve_guardrail": 0.0188,
+    "gate_valve": 0.4083,
+    "Christmas_tree_body": 0.0688
+  },
+  "per_class_IoU": {
+    "pipeline": 0.3372,
+    "steel_frame": 0.0252,
+    "elbow_pipe": 0.2457,
+    "valve_guardrail": 0.0114,
+    "gate_valve": 0.0738,
+    "Christmas_tree_body": 0.0687
+  },
+  "confusion_matrix": [
+    [
+      464257,
+      0,
+      6516,
+      4545,
+      4,
+      0
+    ],
+    [
+      220211,
+      21053,
+      6814,
+      8502,
+      10868,
+      3774
+    ],
+    [
+      180627,
+      0,
+      70825,
+      275,
+      0,
+      0
+    ],
+    [
+      92066,
+      0,
+      2852,
+      1814,
+      0,
+      0
+    ],
+    [
+      51680,
+      3154,
+      7911,
+      14,
+      43302,
+      6
+    ],
+    [
+      357080,
+      561058,
+      12417,
+      48472,
+      470113,
+      107101
+    ]
+  ],
+  "smoke": true,
+  "timestamp": "2026-08-10 07:33:02"
+}

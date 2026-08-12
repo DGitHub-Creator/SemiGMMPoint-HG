@@ -1,0 +1,20 @@
+SemiGMMPoint HG 10% (Area_3, 2757311 valid points)
+  dataset_name: ODPT-HG
+  dataset_root: /path/to/odpt-hg-dataset
+  split_fingerprint: REDACTED
+  checkpoint: experiments/odpt_hg/10pct/checkpoints/official-rankgate-0ab9c71/final.pth
+  epoch: 100, seed: 1
+  OA: 76.84%  mAcc: 62.42%  mIoU: 45.58%
+  IoU_pipeline: 46.89%  Acc_pipeline: 62.20%
+  IoU_steel_frame: 16.66%  Acc_steel_frame: 24.15%
+  IoU_elbow_pipe: 61.95%  Acc_elbow_pipe: 94.24%
+  IoU_valve_guardrail: 7.54%  Acc_valve_guardrail: 15.49%
+  IoU_gate_valve: 52.99%  Acc_gate_valve: 87.66%
+  IoU_Christmas_tree_body: 87.45%  Acc_Christmas_tree_body: 90.76%
+confusion matrix (rows=GT, cols=Pred):
+  GT0      295645      30583      80662      64588       1094       2750
+  GT1      103343      65510      32717      13954       1676      54022
+  GT2        5478       1169     237215       7859          3          3
+  GT3       46326      17785      17595      14988         38          0
+  GT4           0      10998          0         26      92977       2066
+  GT5           0      61349        220      15717      66588    1412367

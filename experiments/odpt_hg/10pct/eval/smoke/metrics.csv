@@ -1,0 +1,2 @@
+method,dataset_name,budget_alias,checkpoint,epoch,seed,OA,mAcc,mIoU
+SemiGMMPoint,ODPT-HG,10%,experiments/odpt_hg/10pct/checkpoints/smoke/final.pth,2,1,0.0913,0.1667,0.0152
