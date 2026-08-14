@@ -9,11 +9,27 @@
 set -euo pipefail
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
 
+# Optional cfg override, e.g. CFG_NAME=semi_gmm_hg_split10_v2 bash .../run_10_train.sh
+if [ -n "${CFG_NAME:-}" ]; then
+    CFG_YAML="$REPO_ROOT/cfgs/odpt_hg/${CFG_NAME}.yaml"
+fi
+
+# PRETRAINED=skip trains from scratch (v3 big-model runs; no HG pre_gmm init).
+if [ "${PRETRAINED:-load}" = "skip" ]; then
+    PRETRAIN_ARGS=()
+    PRETRAIN_MODE=scratch
+else
+    PRETRAIN_ARGS=(--pretrained_path "$PRETRAIN_CKPT")
+    PRETRAIN_MODE=pretrained
+fi
+
 mkdir -p "$TRAIN_DIR" "$CKPT_DIR" "$LOG_DIR"
 print_run_header train
 if [ "$DRY_RUN" != "1" ]; then
     guard_existing_output
-    check_pretrain_missing
+    if [ "$PRETRAIN_MODE" = "pretrained" ]; then
+        check_pretrain_missing
+    fi
 fi
 
 # ---- protocol check (before the experiment, mirrored in logs) -------------
@@ -30,7 +46,7 @@ run_logged "$LOG_DIR/train.log" "$PYTHON" "$REPO_ROOT/examples/segmentation/semi
     --num_workers 4 \
     --seed "$SEED" \
     --epochs "$EPOCHS" \
-    --pretrained_path "$PRETRAIN_CKPT" \
+    "${PRETRAIN_ARGS[@]}" \
     --odpt_final_ckpt "$FINAL_CKPT" \
     --disable_validation True \
     --num_debug_gmm True \
