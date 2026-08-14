@@ -54,7 +54,7 @@ class PointNextGMMSeg(GMMSegHead):
             update_GMM_interval=5,
         )
 
-        in_channels=[32]
+        in_channels=[in_channels] if in_channels is not None else [32]
         in_index=[0]
         channels=64
         

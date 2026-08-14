@@ -27,6 +27,7 @@ model:
     NAME: GMMPointNextDecoder
   cls_args:
     NAME: PointNextGMMSeg
+    in_channels: 64
     num_classes: 6
     ignore_index: 255
 decoder_params:
@@ -42,7 +43,7 @@ decoder_params:
 preTrain:
   is_pretrain: True
 max_unsupervised: 0
-unbranch_freq: 2
+unbranch_freq: 5
 uncriterion_args:
   NAME: GudiePointContrastLoss
   label_smoothing: 0.1
@@ -51,9 +52,10 @@ uncriterion_args:
   is_guide: False
   ignore_index: 255
   max_guide_iter: 10
-  # v2 aggressive: all six classes enabled with two-view agreement + rank gate.
-  confidence_threshold: [0.45, 0.30, 0.45, 0.30, 0.55, 0.40]
-  class_acceptance_fraction: [0.05, 0.03, 0.50, 0.03, 0.05, 0.02]
+  # Official calibrated Area-1 gates (v2 showed aggressive all-class gates
+  # degrade the rare classes: steel_frame/valve_guardrail collapsed to 0).
+  confidence_threshold: [0.40, null, 0.45, null, 0.55, 0.40]
+  class_acceptance_fraction: [0.012, null, 0.993, null, 0.090, 0.010]
 preLoadGMMConfig:
   is_load_gmm: False
   pretrain_path: null
@@ -66,7 +68,7 @@ dataset:
     split_file: splits/10.txt
     val_scenes: [Area_1_conferenceRoom_3, Area_1_conferenceRoom_7]
     test_scenes: [Area_3_conferenceRoom_20, Area_3_conferenceRoom_21, Area_3_conferenceRoom_22]
-    voxel_size: 0.03
+    voxel_size: 0.04
   train:
     split: train
     mode: labeled
@@ -90,13 +92,13 @@ undataset:
     data_root: /home/dzx/data/odpt_hg_semigmm
     split_file: splits/10.txt
     val_scenes: [Area_1_conferenceRoom_3, Area_1_conferenceRoom_7]
-    voxel_size: 0.03
+    voxel_size: 0.04
   train:
     split: train
     mode: unlabeled
     voxel_max: 36000 # 36000
     # Bound GMM/pseudo-label drift to about 2 DDP steps per unsupervised epoch.
-    loop: 3
+    loop: 1
     presample: False
 batch_size: 2
 unbatch_size: 2
