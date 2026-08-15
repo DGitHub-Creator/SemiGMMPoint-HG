@@ -61,8 +61,8 @@ pretrained_path:
 dataset:
   common:
     NAME: ODPTS3DISHG
-    dataset_root: /home/dzx/mainstorage/dzx/hg
-    data_root: /home/dzx/data/odpt_hg_semigmm
+    dataset_root: /path/to/odpt-hg-dataset
+    data_root: /path/to/odpt-hg-data
     split_file: splits/20.txt
     val_scenes: [Area_1_conferenceRoom_3, Area_1_conferenceRoom_7]
     test_scenes: [Area_3_conferenceRoom_20, Area_3_conferenceRoom_21, Area_3_conferenceRoom_22]
@@ -86,8 +86,8 @@ dataset:
 undataset:
   common:
     NAME: ODPTPreS3DISHG
-    dataset_root: /home/dzx/mainstorage/dzx/hg
-    data_root: /home/dzx/data/odpt_hg_semigmm
+    dataset_root: /path/to/odpt-hg-dataset
+    data_root: /path/to/odpt-hg-data
     split_file: splits/20.txt
     val_scenes: [Area_1_conferenceRoom_3, Area_1_conferenceRoom_7]
     voxel_size: 0.03
