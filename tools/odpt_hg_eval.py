@@ -81,7 +81,7 @@ def load_scene(path, cfg):
 
 
 def predict_scene(model, data_path, cfg, pipe_transform, gravity_dim,
-                  return_logits=False):
+                  return_logits=False, vote=1, model2=None):
     model.eval()
     coord, feat, label, idx_points, voxel_idx, reverse_idx_part, reverse_idx_sort = \
         load_scene(data_path, cfg)
@@ -89,35 +89,53 @@ def predict_scene(model, data_path, cfg, pipe_transform, gravity_dim,
         label = torch.from_numpy(label)
     len_part = len(idx_points)
     nearest_neighbor = len_part == 1
-    all_item_logit = []
+    rot_logits = []
     with torch.no_grad():
-        for idx_subcloud in tqdm(range(len(idx_points)), leave=False, desc='eval subcloud'):
-            if not (nearest_neighbor and idx_subcloud > 0):
-                idx_part = idx_points[idx_subcloud]
-                coord_part = coord[idx_part]
-                coord_part -= coord_part.min(0)
-                feat_part = feat[idx_part]
-                data = {'pos': coord_part}
-                if feat_part is not None:
-                    data['x'] = feat_part
-                if pipe_transform is not None:
-                    data = pipe_transform(data)
-                if 'heights' in cfg.feature_keys and 'heights' not in data.keys():
-                    data['heights'] = torch.from_numpy(
-                        coord_part[:, gravity_dim:gravity_dim + 1].astype(np.float32)).unsqueeze(0)
-                if not cfg.dataset.common.get('variable', False):
-                    if 'x' in data.keys():
-                        data['x'] = data['x'].unsqueeze(0)
-                    data['pos'] = data['pos'].unsqueeze(0)
-                for key in data.keys():
-                    data[key] = data[key].cuda(non_blocking=True)
-                data['x'] = get_features_by_keys(data, cfg.feature_keys)
-                out = model(data)
-                logits = out[1] if len(out) == 3 else out[0]
-            all_item_logit.append(logits)
-    all_logits = torch.cat(all_item_logit, dim=0)
-    if not cfg.dataset.common.get('variable', False):
-        all_logits = all_logits.transpose(1, 2).reshape(-1, cfg.num_classes)
+        for k in range(vote):
+            all_item_logit = []
+            if k == 0:
+                it = tqdm(range(len(idx_points)), leave=False, desc='eval subcloud')
+            else:
+                it = range(len(idx_points))
+            for idx_subcloud in it:
+                if not (nearest_neighbor and idx_subcloud > 0):
+                    idx_part = idx_points[idx_subcloud]
+                    coord_part = coord[idx_part]
+                    coord_part -= coord_part.min(0)
+                    if k > 0:
+                        theta = k * np.pi / 2.0
+                        c, s = float(np.cos(theta)), float(np.sin(theta))
+                        x = coord_part[:, 0] * c - coord_part[:, 1] * s
+                        y = coord_part[:, 0] * s + coord_part[:, 1] * c
+                        coord_part = np.stack([x, y, coord_part[:, 2]], axis=1).astype(np.float32)
+                    feat_part = feat[idx_part]
+                    data = {'pos': coord_part}
+                    if feat_part is not None:
+                        data['x'] = feat_part
+                    if pipe_transform is not None:
+                        data = pipe_transform(data)
+                    if 'heights' in cfg.feature_keys and 'heights' not in data.keys():
+                        data['heights'] = torch.from_numpy(
+                            coord_part[:, gravity_dim:gravity_dim + 1].astype(np.float32)).unsqueeze(0)
+                    if not cfg.dataset.common.get('variable', False):
+                        if 'x' in data.keys():
+                            data['x'] = data['x'].unsqueeze(0)
+                        data['pos'] = data['pos'].unsqueeze(0)
+                    for key in data.keys():
+                        data[key] = data[key].cuda(non_blocking=True)
+                    data['x'] = get_features_by_keys(data, cfg.feature_keys)
+                    out = model(data)
+                    logits = out[1] if len(out) == 3 else out[0]
+                    if model2 is not None:
+                        out2 = model2(data)
+                        logits2 = out2[1] if len(out2) == 3 else out2[0]
+                        logits = (logits + logits2) / 2
+                all_item_logit.append(logits)
+            all_logits = torch.cat(all_item_logit, dim=0)
+            if not cfg.dataset.common.get('variable', False):
+                all_logits = all_logits.transpose(1, 2).reshape(-1, cfg.num_classes)
+            rot_logits.append(all_logits)
+        all_logits = torch.stack(rot_logits).mean(dim=0)
     if not nearest_neighbor:
         idx_points = torch.from_numpy(np.hstack(idx_points)).cuda(non_blocking=True)
         all_logits = scatter(all_logits, idx_points, dim=0, reduce='mean')
@@ -149,6 +167,10 @@ def main():
     ap.add_argument('--outdir', type=str, required=True)
     ap.add_argument('--epochs', type=int, default=100, help='expected training epochs (100 official)')
     ap.add_argument('--smoke', action='store_true', help='allow non-final checkpoints (smoke mode)')
+    ap.add_argument('--vote', type=int, default=1,
+                    help='test-time yaw voting: rotate 90*k degrees around gravity axis and average logits (default 1 = off)')
+    ap.add_argument('--checkpoint2', type=str, default=None,
+                    help='optional second checkpoint for logit averaging (ensemble)')
     args = ap.parse_args()
 
     budget = args.budget
@@ -177,6 +199,13 @@ def main():
     model = build_model_from_cfg(cfg.model).cuda()
     load_checkpoint(model, args.checkpoint)
     model.eval()
+    model2 = None
+    if args.checkpoint2:
+        assert os.path.exists(args.checkpoint2), f'checkpoint2 not found: {args.checkpoint2}'
+        model2 = build_model_from_cfg(cfg.model).cuda()
+        load_checkpoint(model2, args.checkpoint2)
+        model2.eval()
+        print(f'[INFO] ensemble: averaging logits of {args.checkpoint} and {args.checkpoint2}')
 
     pipe_transform = build_transforms_from_cfg('val', cfg.datatransforms)
     gravity_dim = cfg.datatransforms.kwargs.gravity_dim
@@ -186,7 +215,8 @@ def main():
     for scene in test_scenes:
         path = os.path.join(data_root, scene + '.pth')
         assert os.path.exists(path), f'missing test scene: {path}'
-        pred, label = predict_scene(model, path, cfg, pipe_transform, gravity_dim)
+        pred, label = predict_scene(model, path, cfg, pipe_transform, gravity_dim,
+                                    vote=args.vote, model2=model2)
         assert label is not None, f'no GT for test scene {scene}'
         assert len(pred) == len(label), f'{scene}: pred {len(pred)} != gt {len(label)}'
         assert pred.min() >= 0 and pred.max() <= cfg.num_classes - 1
