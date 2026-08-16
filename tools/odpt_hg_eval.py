@@ -81,7 +81,7 @@ def load_scene(path, cfg):
 
 
 def predict_scene(model, data_path, cfg, pipe_transform, gravity_dim,
-                  return_logits=False, vote=1, model2=None):
+                  return_logits=False, vote=1, model2=None, model3=None):
     model.eval()
     coord, feat, label, idx_points, voxel_idx, reverse_idx_part, reverse_idx_sort = \
         load_scene(data_path, cfg)
@@ -126,10 +126,13 @@ def predict_scene(model, data_path, cfg, pipe_transform, gravity_dim,
                     data['x'] = get_features_by_keys(data, cfg.feature_keys)
                     out = model(data)
                     logits = out[1] if len(out) == 3 else out[0]
-                    if model2 is not None:
-                        out2 = model2(data)
-                        logits2 = out2[1] if len(out2) == 3 else out2[0]
-                        logits = (logits + logits2) / 2
+                    n_models = 1
+                    for extra in (model2, model3):
+                        if extra is not None:
+                            outx = extra(data)
+                            logits = logits + (outx[1] if len(outx) == 3 else outx[0])
+                            n_models += 1
+                    logits = logits / n_models
                 all_item_logit.append(logits)
             all_logits = torch.cat(all_item_logit, dim=0)
             if not cfg.dataset.common.get('variable', False):
@@ -171,6 +174,8 @@ def main():
                     help='test-time yaw voting: rotate 90*k degrees around gravity axis and average logits (default 1 = off)')
     ap.add_argument('--checkpoint2', type=str, default=None,
                     help='optional second checkpoint for logit averaging (ensemble)')
+    ap.add_argument('--checkpoint3', type=str, default=None,
+                    help='optional third checkpoint for logit averaging (ensemble)')
     args = ap.parse_args()
 
     budget = args.budget
@@ -207,6 +212,13 @@ def main():
         model2.eval()
         print(f'[INFO] ensemble: averaging logits of {args.checkpoint} and {args.checkpoint2}')
 
+    model3 = None
+    if args.checkpoint3:
+        assert os.path.exists(args.checkpoint3), f'checkpoint3 not found: {args.checkpoint3}'
+        model3 = build_model_from_cfg(cfg.model).cuda()
+        load_checkpoint(model3, args.checkpoint3)
+        model3.eval()
+
     pipe_transform = build_transforms_from_cfg('val', cfg.datatransforms)
     gravity_dim = cfg.datatransforms.kwargs.gravity_dim
 
@@ -216,7 +228,7 @@ def main():
         path = os.path.join(data_root, scene + '.pth')
         assert os.path.exists(path), f'missing test scene: {path}'
         pred, label = predict_scene(model, path, cfg, pipe_transform, gravity_dim,
-                                    vote=args.vote, model2=model2)
+                                    vote=args.vote, model2=model2, model3=model3)
         assert label is not None, f'no GT for test scene {scene}'
         assert len(pred) == len(label), f'{scene}: pred {len(pred)} != gt {len(label)}'
         assert pred.min() >= 0 and pred.max() <= cfg.num_classes - 1
@@ -269,6 +281,11 @@ def main():
         'smoke': args.smoke,
         'timestamp': time.strftime('%Y-%m-%d %H:%M:%S'),
     }
+
+    if args.checkpoint2:
+        result['checkpoint2'] = os.path.abspath(args.checkpoint2)
+    if args.checkpoint3:
+        result['checkpoint3'] = os.path.abspath(args.checkpoint3)
 
     with open(os.path.join(args.outdir, 'metrics.json'), 'w') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
