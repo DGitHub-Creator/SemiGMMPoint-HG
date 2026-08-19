@@ -1,40 +1,41 @@
-# Introduction
-This is an official guide to the public Pytorch code and model zoo  for the following paper: 
+# SemiGMMPoint-HG
 
-**SemiGMMPoint: Semi-supervised Point Cloud Segmentation based on Gaussian Mixture Models**
+Official PyTorch code and model zoo for the paper **SemiGMMPoint: Semi-supervised Point Cloud Segmentation based on Gaussian Mixture Models**.
 
-# Environment and Setup
+## Project Overview
 
-This codebase was tested with the following environment configurations. The corresponding version of the installation library is required. You must install these environments independently according to the official documentation: 
+- Semi-supervised 3D point cloud segmentation framework based on Gaussian Mixture Models
+- Supports multiple backbone models: PointNet++, PointNeXt-L, etc.
+- Supports S3DIS, ScanNetv2, ShapeNetPart, SemanticKITTI datasets
 
+## Requirements
 
----
+This codebase was tested with the following environment configurations. The corresponding version of the installation library is required. You must install these environments independently according to the official documentation:
 
 - Python 3.7.11
 - CUDA 11.4
-- Pytorch  1.9.0
+- Pytorch 1.9.0
 - GCC version 7.5.0
 - [MinkowskiEngine](https://github.com/NVIDIA/MinkowskiEngine) 0.4.3
 - [MMCV](https://mmcv.readthedocs.io/zh_CN/latest/get_started/installation.html) 2.0.0
 
----
-
 Other necessary installation libraries embedded in the source code include the following parts:
 
----
 - grid_subsampling library
 - pointnet++ library
 - point transformer library
 - chamfer_dist library
 
----
+## Usage
 
-The installation steps are as follows
 ### 1. Install Dependencies
-Install Dependent Package :
+
+Install Dependent Package:
+
 ```shell
 pip install -r requirements.txt
 ```
+
 if you have any problem with the above command, you can Install some key installation packages by:
 
 ```shell
@@ -61,9 +62,7 @@ cd openpoints/cpp/pointops/
 python setup.py install
 ```
 
-# Train and Test
-
-## 1. Datasets Preparation
+### 3. Datasets Preparation
 
 ##### S3DIS
 
@@ -79,16 +78,13 @@ Please refer to https://github.com/lulutang0608/Point-BERT for ShapeNetPart prep
 
 ##### SemanticKITTI
 
-Please refer to https://github.com/PRBonn/semantic-kitti-api
-for SemanticKITTI preprocessing
+Please refer to https://github.com/PRBonn/semantic-kitti-api for SemanticKITTI preprocessing
 
->  The location for modifying the dataset path is: `SemiGMMPoint\cfgs\...\Name.cfg` and `dataset` data structure.
+> The location for modifying the dataset path is: `SemiGMMPoint\cfgs\...\Name.cfg` and `dataset` data structure.
 
+### 4. Training and Testing Examples
 
-
-### 2. Training and Testing examples
-
-The  configuration files  of model and training parameter are in `SemiGMMPoint\cfgs\...`
+The configuration files of model and training parameter are in `SemiGMMPoint\cfgs\...`
 
 Example of modifying classifier parameters in configuration files:
 
@@ -105,7 +101,7 @@ decoder_params:
     update_loop: 5
 ```
 
-The modification of other runtime parameters , including epochs, batch size, learning rate,and so on, is still implemented in the configuration file.
+The modification of other runtime parameters, including epochs, batch size, learning rate, and so on, is still implemented in the configuration file.
 
 #### With the GMM classifier
 
@@ -133,7 +129,7 @@ python test_semseg.py --test_area 5 --log_dir gmm_pointnet2_sem_seg
 
 - PointNeXt-L
 
-Setting dataset root path  and other settings in `cfgs\scannet\gmmseg_pointnext-l.yaml`:
+Setting dataset root path and other settings in `cfgs\scannet\gmmseg_pointnext-l.yaml`:
 
 Use the following code for training
 
@@ -165,29 +161,18 @@ Use the following code for testing:
 python examples/segmentation/semi_gmmpoint_main.py --cfg cfgs/scannet/10r_semi_gmm_pointnext-l.yaml mode=test dataset.test.split=test no_label=True pretrained_path=<YOUR_CHECKPOINT_PATH>
 ```
 
-
-
-## Model Checkpoints and Logs
+### Model Checkpoints and Logs
 
 *Checkpoints will be made public online after paper is accepted.
 
-
-
-
-
-## Reference By
+## References
 
 The code framework is based on [openpoints](https://github.com/guochengqian/PointNeXt).
 
-Some experiments involve open source repositories: 
+Some experiments involve open source repositories:
 
-https://github.com/guochengqian/PointNeXt
-
-https://github.com/yanx27/Pointnet_Pointnet2_pytorch
-
-https://github.com/lulutang0608/Point-BERT
-
-https://github.com/facebookresearch/PointContrast/
-
-https://github.com/dvlab-research/Stratified-Transformer
-
+- https://github.com/guochengqian/PointNeXt
+- https://github.com/yanx27/Pointnet_Pointnet2_pytorch
+- https://github.com/lulutang0608/Point-BERT
+- https://github.com/facebookresearch/PointContrast/
+- https://github.com/dvlab-research/Stratified-Transformer
