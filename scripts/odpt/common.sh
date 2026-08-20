@@ -118,7 +118,7 @@ check_final_missing() {
 }
 
 guard_existing_output() {
-    # train/eval must not silently overwrite previous official outputs.
+    # train/eval must not silently overwrite previous full-run outputs.
     if [ -e "$FINAL_CKPT" ] && [ "$RESUME" != "1" ]; then
         die "已有输出存在：$FINAL_CKPT。如确需覆盖，请使用新的 RUN_ID（如 RUN_ID=run2 bash scripts/odpt/run_${BUDGET}_train.sh），或显式设置 RESUME=1。"
     fi

@@ -2,7 +2,7 @@
 # ODPT-HG train entry: SemiGMMPoint <BUDGET>% semi-supervised (labeling +
 # unlabeled pool with y=255), loading the HG pre_gmm checkpoint.
 # Usage:
-#   bash scripts/odpt_hg/run_10_train.sh            # official (100 epochs)
+#   bash scripts/odpt_hg/run_10_train.sh            # full run (100 epochs)
 #   SMOKE=1 bash scripts/odpt_hg/run_10_train.sh    # smoke: 2 epochs
 #   DRY_RUN=1 bash scripts/odpt_hg/run_10_train.sh  # print commands only
 #   RESUME=1 bash scripts/odpt_hg/run_10_train.sh   # allow rerun

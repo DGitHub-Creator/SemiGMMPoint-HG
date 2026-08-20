@@ -1,6 +1,8 @@
-# ODPT-HG official rank-gate results: 10% and 20%
+# ODPT-HG rank-gate full-run results: 10% and 20%
 
 Date: 2026-08-11
+
+Note: results were produced by the dataset-adapted SemiGMMPoint implementation (reproduction/adaptation for ODPT-HG), not the paper authors' official code.
 
 ## Protocol
 
@@ -21,7 +23,7 @@ Date: 2026-08-11
 | 20% | 3 | 46.44% | 67.73% | 75.69% | 56.44% |
 | 20% - 10% | +1 | +0.86 pp | +5.31 pp | -1.15 pp | +3.65 pp |
 
-The official unsupervised coverage remained finite and nonzero throughout:
+The unsupervised coverage of the full run remained finite and nonzero throughout:
 
 - 10%: 6.22% to 22.86%, final 9.88%; finite-feature ratio 1.0000.
 - 20%: 6.00% to 19.41%, final 7.61%; finite-feature ratio 1.0000.

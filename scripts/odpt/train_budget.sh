@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ODPT train entry: SemiGMMPoint <BUDGET>% (labeling only, val-aware pool).
 # Usage:
-#   bash scripts/odpt/run_10_train.sh            # official run (100 epochs)
+#   bash scripts/odpt/run_10_train.sh            # full run (100 epochs)
 #   SMOKE=1 bash scripts/odpt/run_10_train.sh    # smoke: 2 epochs, ~5 min
 #   DRY_RUN=1 bash scripts/odpt/run_10_train.sh  # print commands only
 #   RESUME=1 bash scripts/odpt/run_10_train.sh   # allow rerun over existing output

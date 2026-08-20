@@ -3,7 +3,7 @@
 """Calibrate ODPT-HG confidence using labeled Area 1 scenes only.
 
 This diagnostic never reads Area 3 and never changes a checkpoint.  It runs
-the same full-scene voxel voting used by the official evaluator, then reports
+the same full-scene voxel voting used by the standard evaluator, then reports
 confidence/accuracy evidence for selecting or rejecting a pseudo-label gate.
 """
 import argparse

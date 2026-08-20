@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""ODPT official evaluation: fixed final checkpoint, exactly the 3 Area_3 scenes.
+"""ODPT full-run evaluation: fixed final checkpoint, exactly the 3 Area_3 scenes.
 
 Loads the FINAL (last-epoch) checkpoint produced by the training chain and
 evaluates on Area_3_conferenceRoom_20/21/22 with a single global confusion
@@ -14,7 +14,7 @@ matrix (rows = GT, columns = Prediction). Metrics:
 
 Sanity checks performed:
     * test scene list is exactly the 3 official Area_3 scenes
-    * checkpoint is a final checkpoint (epoch == expected epochs for official)
+    * checkpoint is a final checkpoint (epoch == expected epochs for a full run)
     * prediction values in 0..5, GT values in 0..5 (255 filtered if present)
     * prediction / GT lengths match per scene
     * global confusion matrix total == sum of valid test points
@@ -149,7 +149,7 @@ def main():
     ap.add_argument('--cfg', type=str, required=True, help='absolute path to the semi config yaml')
     ap.add_argument('--checkpoint', type=str, required=True, help='absolute path to final.pth')
     ap.add_argument('--outdir', type=str, required=True)
-    ap.add_argument('--epochs', type=int, default=100, help='expected training epochs (100 official)')
+    ap.add_argument('--epochs', type=int, default=100, help='expected training epochs (100 for full runs)')
     ap.add_argument('--smoke', action='store_true', help='allow non-final checkpoints (smoke mode)')
     args = ap.parse_args()
 

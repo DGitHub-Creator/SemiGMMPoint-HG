@@ -4,7 +4,7 @@
 
 ## 1. 问题
 
-官方 10% ODPT 训练（`run_10.sh`，100 epochs，2×RTX 4090，DDP）在 **Epoch 30 无监督轮第 14/48 步**崩溃（rank 1）：
+正式 10% ODPT 全量训练（`run_10.sh`，100 epochs，2×RTX 4090，DDP；适配实现）在 **Epoch 30 无监督轮第 14/48 步**崩溃（rank 1）：
 
 ```
 ValueError: The value argument must be within the support
@@ -70,7 +70,7 @@ GMMHead 自身（means/diagonal/queue，epoch 29 检查全 finite；diagonal min
 
 - 正式协议只认 `experiments/odpt/10pct/checkpoints/official/final.pth`（epoch 100 时由
   `--odpt_final_ckpt` 写出，随后 `run_10_eval.sh` 在 3 个 Area_3 场景评测）。本次验证运行
-  使用 `RUN_ID=verify`，未污染 official 输出。
+  使用 `RUN_ID=verify`，未污染 official 目录（`RUN_ID=official`）的输出。
 - 验证运行不带 `--num_debug_gmm True` 时，诊断完全关闭（零开销）；带 `--num_debug_gmm True`
   时在 NaN 出现时立即报告并终止（不再以 ValueError 崩溃）。
 - 两个无监督周期跑在"全零采样间隔"下性能正常（48 iters/epoch ~2.3 min），未观察到

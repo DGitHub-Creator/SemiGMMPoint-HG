@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""ODPT-HG official evaluation: fixed final checkpoint, exactly the 3 Area_3
+"""ODPT-HG full-run evaluation: fixed final checkpoint, exactly the 3 Area_3
 scenes of the HG dataset.
 
 Same protocol as tools/odpt_eval.py but:
@@ -168,7 +168,7 @@ def main():
     ap.add_argument('--cfg', type=str, required=True, help='absolute path to the semi config yaml')
     ap.add_argument('--checkpoint', type=str, required=True, help='absolute path to final.pth')
     ap.add_argument('--outdir', type=str, required=True)
-    ap.add_argument('--epochs', type=int, default=100, help='expected training epochs (100 official)')
+    ap.add_argument('--epochs', type=int, default=100, help='expected training epochs (100 for full runs)')
     ap.add_argument('--smoke', action='store_true', help='allow non-final checkpoints (smoke mode)')
     ap.add_argument('--vote', type=int, default=1,
                     help='test-time yaw voting: rotate 90*k degrees around gravity axis and average logits (default 1 = off)')

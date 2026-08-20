@@ -2,7 +2,7 @@
 # ODPT-HG eval entry: evaluate the FINAL checkpoint on exactly the 3 Area_3
 # scenes, then refresh experiments/odpt_hg/summary.*
 # Usage:
-#   bash scripts/odpt_hg/run_10_eval.sh             # official eval (after train)
+#   bash scripts/odpt_hg/run_10_eval.sh             # full-run eval (after train)
 #   SMOKE=1 bash scripts/odpt_hg/run_10_eval.sh     # smoke: allow non-final ckpt
 #   DRY_RUN=1 bash scripts/odpt_hg/run_10_eval.sh   # print commands only
 set -euo pipefail
@@ -19,7 +19,7 @@ fi
 # ---- protocol check before evaluation --------------------------------------
 run_logged "$LOG_DIR/eval.log" "$PYTHON" "$PROTO_TOOL" --budget "$BUDGET"
 
-# ---- official evaluation on the final checkpoint ---------------------------
+# ---- full-run evaluation on the final checkpoint ---------------------------
 cd "$REPO_ROOT"
 EVAL_ARGS=(--budget "$BUDGET" --cfg "$CFG_YAML" --checkpoint "$FINAL_CKPT"
            --outdir "$EVAL_DIR" --epochs "$EPOCHS")

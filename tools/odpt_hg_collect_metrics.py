@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Aggregates official (non-smoke) ODPT-HG eval results into
+"""Aggregates full-run (non-smoke) ODPT-HG eval results into
 experiments/odpt_hg/summary.* (dataset_name=ODPT-HG only).
 """
 import csv
@@ -63,7 +63,7 @@ def main():
         return f'{r[key]*100:.2f}%'
 
     lines = [
-        'SemiGMMPoint ODPT-HG summary (Area_3, official runs only)',
+        'SemiGMMPoint ODPT-HG summary (Area_3, full runs only)',
         f'run_id: {args.run_id}',
         'dataset_name: ODPT-HG',
         'dataset_root: /path/to/odpt-hg-dataset',

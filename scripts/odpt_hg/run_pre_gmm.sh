@@ -3,7 +3,7 @@
 # Only coords/colors/features + augmented unlabeled views are used; no GT and
 # no GT-derived class weights. Produces experiments/odpt_hg/pretrain/checkpoints/final.pth
 # Usage:
-#   bash scripts/odpt_hg/run_pre_gmm.sh            # official pretrain
+#   bash scripts/odpt_hg/run_pre_gmm.sh            # full-run pretrain
 #   SMOKE=1 bash scripts/odpt_hg/run_pre_gmm.sh    # smoke: 2 epochs
 #   SMOKE=1 SMOKE_EPOCHS=1 bash ...                # 1 epoch smoke
 #   DRY_RUN=1 bash scripts/odpt_hg/run_pre_gmm.sh  # print commands only

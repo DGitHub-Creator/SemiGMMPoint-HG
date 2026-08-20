@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Aggregates official (non-smoke) eval results into experiments/odpt/summary.*.
+"""Aggregates full-run (non-smoke) eval results into experiments/odpt/summary.*.
 
 Only reads eval/<RUN_ID=official>/metrics.json for each budget. Missing or
 not-yet-produced results are reported as NOT_AVAILABLE (never 0, never stale).
@@ -59,7 +59,7 @@ def main():
         return f'{r["mAcc"]*100:.2f}%'
 
     lines = [
-        'SemiGMMPoint summary (Area_3, official runs only)',
+        'SemiGMMPoint summary (Area_3, full runs only)',
         f'SemiGMMPoint 10% mIoU = {fmt(10)}',
         f'SemiGMMPoint 10% mAcc = {fmt_a(10)}',
         f'SemiGMMPoint 20% mIoU = {fmt(20)}',

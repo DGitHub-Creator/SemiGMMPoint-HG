@@ -60,5 +60,5 @@ pseudo labels at every logged epoch. The supervised training mIoU peaked at
 44.68% (epoch 28), compared with 35.96% in the earlier 35-epoch run whose
 absolute 0.75 gate accepted no pseudo labels.
 
-Result: stability gate passed; proceed to the official 100-epoch run and only
+Result: stability gate passed; proceed to the full 100-epoch run and only
 then evaluate the final checkpoint on Area 3.

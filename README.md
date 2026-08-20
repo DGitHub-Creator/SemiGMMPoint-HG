@@ -1,6 +1,8 @@
 # SemiGMMPoint-HG
 
-Official PyTorch code and model zoo for the paper **SemiGMMPoint: Semi-supervised Point Cloud Segmentation based on Gaussian Mixture Models**.
+This repository is a **reproduction and dataset-adapted version** of the paper **SemiGMMPoint: Semi-supervised Point Cloud Segmentation based on Gaussian Mixture Models**, modified for the custom ODPT / ODPT-HG datasets. It is NOT the official code released by the paper authors.
+
+> 说明：本仓库是基于原论文方法、为适配自定义 ODPT / ODPT-HG 数据集而修改后的复现与适配版本，并非论文作者发布的官方代码。
 
 ## Project Overview
 

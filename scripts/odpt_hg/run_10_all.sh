@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SemiGMMPoint ODPT-HG 10%: train then official Area_3 eval.
+# SemiGMMPoint ODPT-HG 10%: train then standard Area_3 eval.
 set -euo pipefail
 export BUDGET=10
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

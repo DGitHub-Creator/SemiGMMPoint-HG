@@ -50,7 +50,7 @@ prototype update paths. However, the current GMM posterior never crosses the
 joint 0.75 gate during the first 35 epochs, so this run is effectively
 supervised-only during its nominal unsupervised epochs.
 
-Do not start the official 100-epoch 10% run or any 20% run yet. The next
+Do not start the full 100-epoch 10% run or any 20% run yet. The next
 diagnostic should examine labeled-Area-1 fitting and GMM confidence
 calibration/scale without using Area 3 to select a threshold. Re-running the
 pre-GMM stage is not required solely because of this gate fix.

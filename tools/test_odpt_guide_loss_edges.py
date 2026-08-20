@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """GudiePointContrastLoss edge-case tests (single process).
 
-Covers the dimension-boundary crash that took down the official ODPT run:
+Covers the dimension-boundary crash that took down the full ODPT run:
 the guide CE was fed `out = logits.squeeze()` which collapses [1, 1] -> []
 when K == 1 (a single unique pseudo-label class), raising
 `IndexError: Dimension out of range (expected to be in range of [-1, 0], but got 1)`.
